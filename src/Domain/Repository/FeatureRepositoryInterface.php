@@ -11,7 +11,7 @@ interface FeatureRepositoryInterface
 
     public function remove(Feature $feature);
 
-    public function findByName($featureName);
+    public function findByName($featureName): Feature;
 
     public function enableFor($featureName, FeaturableInterface $featurable);
 

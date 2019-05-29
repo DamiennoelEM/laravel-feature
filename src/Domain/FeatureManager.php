@@ -2,6 +2,7 @@
 
 namespace LaravelFeature\Domain;
 
+use LaravelFeature\Domain\Exception\FeatureException;
 use LaravelFeature\Domain\Model\Feature;
 use LaravelFeature\Domain\Repository\FeatureRepositoryInterface;
 use LaravelFeature\Featurable\FeaturableInterface;
@@ -34,7 +35,6 @@ class FeatureManager
 
     public function rename($featureOldName, $featureNewName)
     {
-        /** @var Feature $feature */
         $feature = $this->repository->findByName($featureOldName);
         $feature->setNewName($featureNewName);
 
@@ -43,7 +43,6 @@ class FeatureManager
 
     public function enable($featureName)
     {
-        /** @var Feature $feature */
         $feature = $this->repository->findByName($featureName);
 
         $feature->enable();
@@ -53,7 +52,6 @@ class FeatureManager
 
     public function disable($featureName)
     {
-        /** @var Feature $feature */
         $feature = $this->repository->findByName($featureName);
 
         $feature->disable();
@@ -63,9 +61,13 @@ class FeatureManager
 
     public function isEnabled($featureName)
     {
-        /** @var Feature $feature */
-        $feature = $this->repository->findByName($featureName);
-        return $feature->isEnabled();
+        try {
+            $feature = $this->repository->findByName($featureName);
+            return $feature->isEnabled();
+        }
+        catch (FeatureException $e) {
+            return false;
+        }
     }
 
     public function enableFor($featureName, FeaturableInterface $featurable)

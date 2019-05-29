@@ -40,7 +40,7 @@ class EloquentFeatureRepository implements FeatureRepositoryInterface
         $model->delete();
     }
 
-    public function findByName($featureName)
+    public function findByName($featureName): Feature
     {
         /** @var Model $model */
         $model = Model::where('name', '=', $featureName)->first();
