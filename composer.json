@@ -1,9 +1,9 @@
 {
-    "name": "thibaudcharrier/laravel-feature",
+    "name": "damiennoelem/laravel-feature",
     "type": "library",
     "description": "A simple package to manage feature flagging in a Laravel project.",
     "keywords": ["laravel", "feature", "flag"],
-    "homepage": "https://github.com/thibaudcharrier/laravel-feature",
+    "homepage": "https://github.com/damiennoelem/laravel-feature",
     "license": "MIT",
     "authors": [
         {
